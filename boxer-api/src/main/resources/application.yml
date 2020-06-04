@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: boxer-api
+  resources:
+    static-locations:
+    - file:logs
+    - classpath:static
+    
+  mvc:
+    static-path-pattern: /**
+server:
+    servlet:
+      session: 
+        persistent: true
+    port: 80
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "env"
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG
+info.project.name: ${spring.application.name}
