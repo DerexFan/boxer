@@ -1,10 +1,11 @@
-import org.gradle.jvm.tasks.Jar
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
 plugins {
 	id("org.springframework.boot") version "2.3.0.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
-	id ("docker.plugin") version "1.0.31"
+	id("com.bmuschko.docker-remote-api") version "6.4.0"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
 
@@ -41,7 +42,15 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.register<Copy>("unzipBootJar"){
-	print(project.)
-	//from(zipTree(bootJar))
-	//into("target")
+
+	dependsOn(tasks.getByName("bootJar"))
+	val outputs=tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar").outputs
+	from(zipTree(outputs.files.first()),"$rootDir/Dockerfile")
+	into("target")
+}
+
+tasks.create("buildDockerAppImage",DockerBuildImage::class) {
+	dependsOn("unzipBootJar")
+	inputDir.set(file("target"))
+	images.add("sawied/boxer:latest")
 }

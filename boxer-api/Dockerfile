@@ -4,7 +4,7 @@ MAINTAINER MVTM sawied danan.2009@gmail.com
 VOLUME /tmp
 
 # Add the service itself
-ARG DEPENDENCY=target/dependency
+ARG DEPENDENCY=target
 
 # Set profile
 ARG profile
