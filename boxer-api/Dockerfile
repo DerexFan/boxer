@@ -4,7 +4,7 @@ MAINTAINER MVTM sawied danan.2009@gmail.com
 VOLUME /tmp
 
 # Add the service itself
-ARG DEPENDENCY=target
+ARG DEPENDENCY=build/docker
 
 # Set profile
 ARG profile
