@@ -3,9 +3,9 @@ pipeline {
     options {
        buildDiscarder(logRotator(numToKeepStr:'5'))
     }
-    tools {
-      jdk 'jdk8'
-    }
+   //  tools {
+    //   jdk 'jdk8'
+   //  }
 
     stages {
 
