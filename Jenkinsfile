@@ -3,6 +3,10 @@ pipeline {
     options {
        buildDiscarder(logRotator(numToKeepStr:'5'))
     }
+    environment {
+      docker = '/usr/bin/docker'
+    }
+
    //  tools {
     //   jdk 'jdk8'
    //  }
