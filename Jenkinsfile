@@ -42,6 +42,7 @@ pipeline {
       stage ('image'){
             steps {
               sh '''
+                 ln -s /usr/bin/docker docker
                  ./gradlew docker
               '''
             }
