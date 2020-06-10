@@ -17,11 +17,14 @@ spec:
         - name: registry-data
           mountPath: /var/lib/registry
         - name: registry-config
-          mountPath: /
+          mountPath: /etc/docker/registry/config.yml
   volumes:
     - name: registry-data
       hostPath:
-        path: /data/registry/
+        path: /data/registry/data
+    - name: registry-config
+      hostPath:
+        path: /data/registry/config.yml
 ---
 
 

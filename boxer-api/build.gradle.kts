@@ -48,6 +48,18 @@ tasks.register<Copy>("unzipBootJar"){
 	into("$buildDir/docker")
 }
 
+docker {
+	val host :String = System.getenv("DOCKER_HOST")?:"127.0.0.1"
+	url.set(host)
+	/*certPath.set(File(System.getProperty("user.home"), ".boot2docker/certs/boot2docker-vm"))
+	registryCredentials {
+		url.set("https://index.docker.io/v1/")
+		username.set("bmuschko")
+		password.set("pwd")
+		email.set("benjamin.muschko@gmail.com")
+	}*/
+}
+
 tasks.create("buildDockerImage",DockerBuildImage::class) {
 	group = "application"
 	description = "build a docker image from unzip directory by dockerfile."
