@@ -38,7 +38,7 @@ pipeline {
       stage ('image'){
             steps {
               sh '''
-                 ./gradlew :boxer-api:buildDockerImage --help
+                 ./gradlew :boxer-api:buildDockerImage
               '''
             }
       }
