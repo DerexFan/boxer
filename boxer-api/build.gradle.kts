@@ -50,7 +50,7 @@ tasks.register<Copy>("unzipBootJar"){
 
 docker {
 	val host:String = System.getenv("DOCKER_HOST")?:"10.0.2.15"
-	url.set("https://$host:2376")
+	url.set("https://$host:2379")
 	/*certPath.set(File(System.getProperty("user.home"), ".boot2docker/certs/boot2docker-vm"))
 	registryCredentials {
 		url.set("https://index.docker.io/v1/")
