@@ -38,27 +38,10 @@ pipeline {
       stage ('image'){
             steps {
               sh '''
-                 ./gradlew docker
+                 ./gradlew :boxer-api:buildDockerImage
               '''
             }
       }
 
-      stage ('deploy'){
-                 steps {
-                   sh '''
-                      docker ps -q --filter "name=oneport" | grep -q . && docker rm  -f oneport
-                      docker run --rm  --name oneport -h oneport --network netlinks -d chinasoft/api-web
-                   '''
-                 }
-           }
-
-        stage ('tag'){
-                        steps {
-                          sh '''
-                             git tag $(date +"%Y%m%d%H%M") & git push --tags
-                          '''
-                        }
-                  }
-    }
 
 }
