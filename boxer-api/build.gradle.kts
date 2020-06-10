@@ -42,14 +42,16 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.register<Copy>("unzipBootJar"){
-
 	dependsOn(tasks.getByName("bootJar"))
 	val outputs=tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar").outputs
 	from(zipTree(outputs.files.first()),"Dockerfile")
 	into("$buildDir/docker")
 }
 
-tasks.create("buildDockerAppImage",DockerBuildImage::class) {
+tasks.create("buildDockerImage",DockerBuildImage::class) {
+	group = "application"
+	description = "build a docker image from unzip directory by dockerfile."
+
 	dependsOn("unzipBootJar")
 	inputDir.set(file("$buildDir/docker"))
 	images.add("sawied/boxer:latest")

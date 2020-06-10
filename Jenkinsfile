@@ -38,7 +38,7 @@ pipeline {
       stage ('image'){
             steps {
               sh '''
-                 ./gradlew docker
+                 ./gradlew buildDockerImage
               '''
             }
       }

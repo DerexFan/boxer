@@ -4,8 +4,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class BoxerApiApplication
-
-fun main(args: Array<String>) {
-	runApplication<BoxerApiApplication>(*args)
+class BoxerApiApplication{
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            runApplication<BoxerApiApplication>(*args)
+        }
+    }
 }
+
+
