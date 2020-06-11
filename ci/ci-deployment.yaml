@@ -18,6 +18,8 @@ spec:
           mountPath: /var/lib/registry
         - name: registry-config
           mountPath: /etc/docker/registry/config.yml
+        - name: registry-password
+          mountPath: /etc/registry
   volumes:
     - name: registry-data
       hostPath:
@@ -25,6 +27,10 @@ spec:
     - name: registry-config
       hostPath:
         path: /data/registry/config.yml
+    - name: registry-password
+      hostPath: /data/registry/registry
+  nodeSelector:
+    host: ci
 ---
 
 
