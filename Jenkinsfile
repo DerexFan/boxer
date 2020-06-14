@@ -44,5 +44,17 @@ pipeline {
       }
 
     }
+    post {
+
+        success {
+
+            echo "success"
+             sh '''
+              ansible-playbook -i ansible/deployment/hosts ansible/deployment/my_playbook.yaml
+              '''
+
+        }
+
+    }
 
 }
