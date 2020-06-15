@@ -50,7 +50,7 @@ pipeline {
 
             echo "success"
              sh '''
-              ansible-playbook -i ansible/deployment/hosts ansible/deployment/my_playbook.yaml
+              ansible-playbook -i ansible/deployment/hosts ansible/deployment/my_playbook.yaml --private-key="ansible/deployment/mykey"
               '''
 
         }
