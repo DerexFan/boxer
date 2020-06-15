@@ -1,10 +1,12 @@
 - hosts: all
   vars:
     fileName: 'mynewfile.txt'
-
+  remote_user: jenkins
+  become: yes
+  become_user: root  
   tasks:
   - name: # just try to create the file above {{ fileName }}
     # file: path=/tmp{{ fileName }} state=touch
-    shell: ansible $DOCKER_HOST -m copy -a 'src=devment-server.yaml dest=/devment-server.yaml mode=755'
+    shell: ansible $DOCKER_HOST -m copy -a 'src=devment-server.yaml dest=/tmp/devment-server.yaml mode=755'
     shell: kubectl apply -f /tmp/devment_server.yaml
  
